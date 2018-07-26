@@ -56,6 +56,7 @@ public class LoginControllerTest {
 
         val ret = mockMvc.perform(post("/auth/login?" + URLEncodedUtils.format(urlParams, StandardCharsets.UTF_8))).andReturn();
 
+
         assertThat(ret.getResponse().getStatus(), is(200));
     }
 
