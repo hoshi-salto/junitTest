@@ -1,0 +1,53 @@
+buildscript {
+	ext {
+		springBootVersion = '1.5.14.RELEASE'
+	}
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse-wtp'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+apply plugin: 'war'
+
+war {
+	// 作成するwarファイル名
+    baseName = 'test'
+}
+
+group = 'jp.co.test'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = 1.8
+
+repositories {
+	mavenCentral()
+}
+
+configurations {
+	providedRuntime
+}
+
+dependencies {
+	// web
+	compile('org.springframework.boot:spring-boot-starter-thymeleaf')
+	compile('org.springframework.boot:spring-boot-starter-web')
+	providedRuntime('org.springframework.boot:spring-boot-starter-tomcat')
+	compile group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.5.6'
+
+	// DB
+	// utils
+    compile('org.apache.commons:commons-lang3:3.7')
+    compile('commons-net:commons-net:3.6')
+	runtime('org.springframework.boot:spring-boot-devtools')
+    compile('org.projectlombok:lombok:1.16.18')
+    compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.6'
+	// test
+	testCompile('org.springframework.boot:spring-boot-starter-test')
+	testCompile 'junit:junit:4.12'
+}
