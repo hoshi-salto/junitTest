@@ -30,9 +30,6 @@ public class LoginController{
      */
 	@GetMapping(value = "/login")
     public String index(@ModelAttribute LoginForm loginForm) throws Exception {
-
-
-
         return ScreenConst.LOGIN;
     }
 
